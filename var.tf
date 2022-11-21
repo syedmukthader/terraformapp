@@ -33,12 +33,16 @@ variable "rmqpass" {
   default = "1234@1234"
 }
 
-variable "dbname" {
+variable "dbusername" {
   default = "admin"
 }
 
 variable "dbpass" {
   default = "admin"
+}
+
+variable "dbname" {
+  default = "accounts"
 }
 
 variable "instance_count" {
