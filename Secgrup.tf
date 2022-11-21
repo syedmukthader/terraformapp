@@ -2,7 +2,7 @@ resource "aws_security_group" "javaapp-bean-elb-sg" {
 
   name        = "javaapp-bean-elb-sg"
   description = "Security group for beanstalk-elb "
-  vpc_id      = "module.vpc.vpc_id"
+  vpc_id      = module.vpc.vpc_id
   egress {
     from_port   = 0
     protocol    = "-1"
