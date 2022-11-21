@@ -1,90 +1,90 @@
-variable AWS_REGION {
-  default = 'us-east-1'
+variable "AWS_REGION" {
+  default = "us-east-1"
 }
 
-variable AMIS {
-  type = map
+variable "AMIS" {
+  type = map(any)
   default = {
-    us-east-1 = 'ami-0149b2da6ceec4bb0'
-    us-east-2 = 'ami-0149b2da6ceec4234'
+    us-east-1 = "ami-0149b2da6ceec4bb0"
+    us-east-2 = "ami-0149b2da6ceec4234"
   }
 }
 
-variable private_key {
-  default = 'appkey'
+variable "private_key" {
+  default = "appkey"
 }
 
-variable public_key {
-  default = 'appkey.pub'
+variable "public_key" {
+  default = "appkey.pub"
 }
-variable USERNAME {
-  default = 'ubuntu'
-}
-
-variable myip {
-  default = 109.249.181.13
+variable "USERNAME" {
+  default = "ubuntu"
 }
 
-variable rmquser {
-  default = 'rabbit'
+variable "myip" {
+  default = "109.249.181.13"
 }
 
-variable rmqpass {
-  default = '1234@1234'
+variable "rmquser" {
+  default = "rabbit"
 }
 
-variable dbname {
-  default = 'admin'
+variable "rmqpass" {
+  default = "1234@1234"
 }
 
-variable dbpass {
-  default = 'admin'
+variable "dbname" {
+  default = "admin"
 }
 
-variable  instance_count{
-  default = '1'
+variable "dbpass" {
+  default = "admin"
 }
 
-variable VPC_name {
-  default = 'javaapp-VPC'
+variable "instance_count" {
+  default = "1"
 }
 
-variable Zone1 {
-  default = 'us-east-1a'
+variable "VPC_name" {
+  default = "javaapp-VPC"
 }
 
-variable Zone2 {
-  default = 'us-east-1b'
+variable "Zone1" {
+  default = "us-east-1a"
 }
 
-variable Zone3 {
-  default = 'us-east-1c'
+variable "Zone2" {
+  default = "us-east-1b"
 }
 
-variable vpcCIDR {
-  default = '172.21.0.0/16'
+variable "Zone3" {
+  default = "us-east-1c"
 }
 
-variable PubSub1CIDR {
+variable "vpcCIDR" {
+  default = "172.21.0.0/16"
+}
+
+variable "PubSub1CIDR" {
   default = "172.21.2.0/24"
 }
 
-variable PubSub2CIDR {
+variable "PubSub2CIDR" {
   default = "172.21.3.0/24"
 }
 
-variable PubSub3CIDR {
+variable "PubSub3CIDR" {
   default = "172.21.4.0/24"
 }
 
-variable PriSub1CIDR {
+variable "PriSub1CIDR" {
   default = "172.21.5.0/24"
 }
 
-variable PriSub2CIDR {
+variable "PriSub2CIDR" {
   default = "172.21.6.0/24"
 }
 
-variable PriSub3CIDR {
+variable "PriSub3CIDR" {
   default = "172.21.7.0/24"
 }
