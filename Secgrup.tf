@@ -72,7 +72,7 @@ resource "aws_security_group" "javaapp-backend-sg" {
     from_port       = 0
     protocol        = "-1"
     to_port         = 0
-    security_groups = [aws_security_group.javaapp-ec2prodbs-sg]
+    security_groups = [aws_security_group.javaapp-ec2prodbs-sg.id]
   }
 }
 
