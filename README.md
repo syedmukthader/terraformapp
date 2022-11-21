@@ -1,1 +1,1 @@
-# terraformapp
+# Terraform Code for Java Application
