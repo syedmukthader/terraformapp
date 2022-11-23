@@ -30,7 +30,7 @@ variable "rmquser" {
 }
 
 variable "rmqpass" {
-  default = "1234@1234"
+  default = "123456@123456"
 }
 
 variable "dbusername" {
