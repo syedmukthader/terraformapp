@@ -21,7 +21,7 @@ resource "aws_db_instance" "javaapp-rds" {
   instance_class         = "db.t2.micro"
   storage_type           = "gp2"
   engine                 = "mysql"
-  engine_version         = "5.6"
+  engine_version         = "5.6.34"
   parameter_group_name   = "default.my.sql5.6"
   multi_az               = "false"
   publicly_accessible    = "false"
@@ -37,6 +37,7 @@ resource "aws_elasticache_cluster" "javaapp-cache" {
   cluster_id           = "javaapp-cache"
   engine               = "memcached"
   node_type            = "cache.t2.micro"
+  num_cache_nodes      = 1
   parameter_group_name = "default.memcached1.5"
   port                 = 11211
   security_group_ids   = [aws_security_group.javaapp-backend-sg.id]
@@ -49,7 +50,7 @@ resource "aws_mq_broker" "javaapp-rmq" {
   engine_version     = "5.15.0"
   host_instance_type = "mq.t2.micro"
   security_groups    = [aws_security_group.javaapp-backend-sg.id]
-
+  subnet_ids         = [module.vpc.private_subnets[0]]
   user {
     password = var.rmqpass #coming from variable file
     username = var.rmquser
