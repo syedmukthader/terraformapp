@@ -1,7 +1,7 @@
 resource "aws_elastic_beanstalk_environment" "javaapp-bean-prod" {
-  application         = aws_elastic_beanstalk_application.javaapp-prod.name
   name                = "javaapp-bean-prod"
-  solution_stack_name = "64bit Amazon Linux 2 v4.1.1 running Tomcat 8.5 Corretto 11"
+  application         = aws_elastic_beanstalk_application.javaapp-prod.name
+  solution_stack_name = "64bit Amazon Linux 2 v4.3.1 running Tomcat 8.5 Corretto 11"
   cname_prefix        = "javaapp-bean-prod-domain"
   setting {
     name      = "VPCid"
@@ -9,8 +9,8 @@ resource "aws_elastic_beanstalk_environment" "javaapp-bean-prod" {
     value     = module.vpc.vpc_id
   }
   setting {
+    namespace = "aws:autoscaling:launchconfiguration"
     name      = "IamInstanceProfile"
-    namespace = "aws:autoscaling:launcherconfiguration"
     value     = "aws-elasticbeanstalk-ec2-role"
   }
   setting {
@@ -110,9 +110,9 @@ resource "aws_elastic_beanstalk_environment" "javaapp-bean-prod" {
     value     = "Rolling"
   }
   setting {
-    name      = "SecurityGrup"
     namespace = "aws:autoscaling:launchconfiguration"
-    value     = aws_security_group.javaapp-ec2prodbs-sg.id
+    name      = "SecurityGroups"
+    value     = aws_security_group.javaapp-prod-sg.id
   }
 
   setting {
@@ -120,5 +120,5 @@ resource "aws_elastic_beanstalk_environment" "javaapp-bean-prod" {
     namespace = "aws:elbv2:loadbalancer"
     value     = aws_security_group.javaapp-bean-elb-sg.id
   }
-  depends_on = [aws_security_group.javaapp-bean-elb-sg, aws_security_group.javaapp-ec2prodbs-sg]
+  depends_on = [aws_security_group.javaapp-bean-elb-sg, aws_security_group.javaapp-prod-sg]
 }
