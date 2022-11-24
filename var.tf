@@ -22,7 +22,7 @@ variable "USERNAME" {
 }
 
 variable "myip" {
-  default = "213.205.240.22/32"
+  default = "213.205.240.58/32"
 }
 
 variable "rmquser" {
