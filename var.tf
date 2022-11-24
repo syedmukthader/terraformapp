@@ -10,11 +10,11 @@ variable "AMIS" {
   }
 }
 
-variable "private_key" {
+variable "private_key_path" {
   default = "appkey"
 }
 
-variable "public_key" {
+variable "public_key_path" {
   default = "appkey.pub"
 }
 variable "USERNAME" {
@@ -22,7 +22,7 @@ variable "USERNAME" {
 }
 
 variable "myip" {
-  default = "213.205.240.15/32"
+  default = "213.205.240.22/32"
 }
 
 variable "rmquser" {
@@ -38,7 +38,7 @@ variable "dbusername" {
 }
 
 variable "dbpass" {
-  default = "admin"
+  default = "admin12345"
 }
 
 variable "dbname" {
@@ -49,7 +49,7 @@ variable "instance_count" {
   default = "1"
 }
 
-variable "VPC_name" {
+variable "VPC_NAME" {
   default = "javaapp-VPC"
 }
 
@@ -70,25 +70,25 @@ variable "vpcCIDR" {
 }
 
 variable "PubSub1CIDR" {
-  default = "172.21.2.0/24"
+  default = "172.21.1.0/24"
 }
 
 variable "PubSub2CIDR" {
-  default = "172.21.3.0/24"
+  default = "172.21.2.0/24"
 }
 
 variable "PubSub3CIDR" {
-  default = "172.21.4.0/24"
+  default = "172.21.3.0/24"
 }
 
 variable "PriSub1CIDR" {
-  default = "172.21.5.0/24"
+  default = "172.21.4.0/24"
 }
 
 variable "PriSub2CIDR" {
-  default = "172.21.6.0/24"
+  default = "172.21.5.0/24"
 }
 
 variable "PriSub3CIDR" {
-  default = "172.21.7.0/24"
+  default = "172.21.6.0/24"
 }
