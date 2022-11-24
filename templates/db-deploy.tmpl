@@ -1,0 +1,5 @@
+sudo apt update
+sudo apt install git mysql-client -y
+git clone -b vp-rem https://github.com/syedmukthader/terraformapp.git
+mysql -h ${rds-endpoint} -u ${dbusername} --password=${dbpass} accounts --ssl-mode=DISABLED <
+/home/ubuntu/javaapp-project/src/main/resources/db_backup
