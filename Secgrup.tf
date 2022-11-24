@@ -1,5 +1,4 @@
 resource "aws_security_group" "javaapp-bean-elb-sg" {
-
   name        = "javaapp-bean-elb-sg"
   description = "Security group for beanstalk-elb "
   vpc_id      = module.vpc.vpc_id
@@ -34,18 +33,18 @@ resource "aws_security_group" "javaapp-bastion-sg" {
     from_port   = 22
     protocol    = "tcp"
     to_port     = 22
-    cidr_blocks = [var.myip]
+    cidr_blocks = [0.0.0.0/0]
   }
 }
 
-resource "aws_security_group" "javaapp-ec2prodbs-sg" {
+resource "aws_security_group" "javaapp-prod-sg" {
   name        = "javaapp-ec2prodbs-sg"
   description = "Security group for beanstalk instances"
   vpc_id      = module.vpc.vpc_id
   egress {
     from_port   = 0
-    protocol    = "-1"
     to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
@@ -63,8 +62,8 @@ resource "aws_security_group" "javaapp-backend-sg" {
   vpc_id      = module.vpc.vpc_id
   egress {
     from_port   = 0
-    protocol    = "-1"
     to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -72,15 +71,21 @@ resource "aws_security_group" "javaapp-backend-sg" {
     from_port       = 0
     protocol        = "-1"
     to_port         = 0
-    security_groups = [aws_security_group.javaapp-ec2prodbs-sg.id]
+    security_groups = [aws_security_group.javaapp-prod-sg.id]
+  }
+  ingress {
+    from_port       = 3306
+    protocol        = "tcp"
+    to_port         = 3306
+    security_groups = [aws_security_group.javaapp-bastion-sg.id]
   }
 }
 
 resource "aws_security_group_rule" "sec_group_allow_itself" {
+  type                     = "ingress"
   from_port                = 0
+  to_port                  = 65535
   protocol                 = "tcp"
   security_group_id        = aws_security_group.javaapp-backend-sg.id
   source_security_group_id = aws_security_group.javaapp-backend-sg.id
-  to_port                  = 65535
-  type                     = "ingress"
 }
