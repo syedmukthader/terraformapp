@@ -12,7 +12,7 @@ resource "aws_instance" "javaapp-bastion" {
   }
 
   provisioner "file" {
-    content     = templatefile("templates/db-deploy.tmpl", { rds-endpoint = aws_db_instance.javaapp-rds.address, dbusername = var.dbusername, dbpass = var.dbpass })
+    content     = templatefile("templates/db-deploy.tmpl", { rds-endpoint = aws_db_instance.javaapp-rds1.address, dbusername = var.dbusername, dbpass = var.dbpass })
     destination = "/tmp/javaapp-dbdeploy.sh"
   }
   provisioner "remote-exec" {
@@ -26,5 +26,5 @@ resource "aws_instance" "javaapp-bastion" {
     private_key = file(var.private_key_path)
     host        = self.public_ip
   }
-  depends_on = [aws_db_instance.javaapp-rds]
+  depends_on = [aws_db_instance.javaapp-rds1]
 }
