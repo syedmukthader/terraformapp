@@ -28,7 +28,6 @@ resource "aws_db_instance" "javaapp-rds1" {
   db_subnet_group_name   = aws_db_subnet_group.javaapp-rds-subgrp1.name
   vpc_security_group_ids = [aws_security_group.javaapp-backend-sg.id]
 }
-
 resource "aws_elasticache_cluster" "javaapp-cache1" {
   cluster_id           = "javaapp-cache"
   engine               = "memcached"
