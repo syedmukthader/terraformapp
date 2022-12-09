@@ -5,7 +5,7 @@ resource "aws_instance" "javaapp-bastion" {
   subnet_id              = module.vpc.public_subnets[0]
   count                  = var.instance_count
   vpc_security_group_ids = [aws_security_group.javaapp-bastion-sg.id]
-
+    
   tags = {
     Name    = "JavaApp-bastion"
     PROJECT = "JavaApp"
