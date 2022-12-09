@@ -122,3 +122,4 @@ resource "aws_elastic_beanstalk_environment" "javaapp-bean-prod1" {
   }
   depends_on = [aws_security_group.javaapp-bean-elb-sg, aws_security_group.javaapp-prod-sg]
 }
+      
